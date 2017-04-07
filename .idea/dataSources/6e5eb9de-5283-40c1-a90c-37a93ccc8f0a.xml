@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MySQL - bookstore@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.1">
+    <root id="1"/>
+    <schema id="2" parent="1" name="bookstore">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="books"/>
+    <schema id="4" parent="1" name="book_db"/>
+    <schema id="5" parent="1" name="discuss"/>
+    <schema id="6" parent="1" name="first_db"/>
+    <schema id="7" parent="1" name="information_schema"/>
+    <schema id="8" parent="1" name="mysql"/>
+    <schema id="9" parent="1" name="performance_schema"/>
+    <schema id="10" parent="1" name="phptest"/>
+    <schema id="11" parent="1" name="question"/>
+    <schema id="12" parent="1" name="sakila"/>
+    <schema id="13" parent="1" name="sample_one"/>
+    <schema id="14" parent="1" name="sys"/>
+    <schema id="15" parent="1" name="test"/>
+    <schema id="16" parent="1" name="world"/>
+    <table id="17" parent="2" name="books"/>
+    <table id="18" parent="2" name="order"/>
+    <table id="19" parent="2" name="orderdetail"/>
+    <table id="20" parent="2" name="users"/>
+    <routine id="21" parent="2" name="booksale">
+      <RoutineKind>function</RoutineKind>
+    </routine>
+    <routine id="22" parent="2" name="daily_sale">
+      <RoutineKind>function</RoutineKind>
+    </routine>
+    <routine id="23" parent="2" name="hotbook">
+      <RoutineKind>function</RoutineKind>
+    </routine>
+    <column id="24" parent="17" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="25" parent="17" name="bookName">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="26" parent="17" name="bookPrice">
+      <Position>3</Position>
+      <DataType>decimal(10,2)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="27" parent="17" name="bookInfo">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="28" parent="17" name="bookAuthor">
+      <Position>5</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="29" parent="17" name="category">
+      <Position>6</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <key id="30" parent="17" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="31" parent="18" name="userId">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="32" parent="18" name="time">
+      <Position>3</Position>
+      <DataType>date|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="33" parent="18" name="orderId">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="34" parent="18" name="price">
+      <Position>4</Position>
+      <DataType>decimal(10,2)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="35" parent="18" name="userId">
+      <ColNames>userId</ColNames>
+    </index>
+    <key id="36" parent="18" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>orderId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="37" parent="18" name="userId">
+      <ColNames>userId</ColNames>
+      <RefSchemaName>bookstore</RefSchemaName>
+      <RefTableName>users</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="38" parent="19" name="orderId">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="39" parent="19" name="bookId">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="40" parent="19" name="number">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="41" parent="19" name="bookId">
+      <ColNames>bookId</ColNames>
+    </index>
+    <key id="42" parent="19" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>orderId
+bookId</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="43" parent="19" name="orderId">
+      <ColNames>orderId</ColNames>
+      <RefSchemaName>bookstore</RefSchemaName>
+      <RefTableName>order</RefTableName>
+      <RefColNames>orderId</RefColNames>
+    </foreign-key>
+    <foreign-key id="44" parent="19" name="bookId">
+      <ColNames>bookId</ColNames>
+      <RefSchemaName>bookstore</RefSchemaName>
+      <RefTableName>books</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="45" parent="20" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="46" parent="20" name="username">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="47" parent="20" name="password">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="48" parent="20" name="email">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="49" parent="20" name="auth">
+      <Position>5</Position>
+      <DataType>int(10) unsigned|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <key id="50" parent="20" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <argument id="51" parent="21">
+      <ArgumentDirection>R</ArgumentDirection>
+      <DataType>int(11)|0</DataType>
+    </argument>
+    <argument id="52" parent="21" name="bid">
+      <DataType>int(11)|0</DataType>
+    </argument>
+    <argument id="53" parent="22">
+      <ArgumentDirection>R</ArgumentDirection>
+      <DataType>decimal(10,2)|0</DataType>
+    </argument>
+    <argument id="54" parent="22" name="d">
+      <DataType>date|0</DataType>
+    </argument>
+    <argument id="55" parent="23">
+      <ArgumentDirection>R</ArgumentDirection>
+      <DataType>int(11)|0</DataType>
+    </argument>
+    <argument id="56" parent="23" name="bid">
+      <DataType>int(11)|0</DataType>
+    </argument>
+  </database-model>
+</dataSource>
