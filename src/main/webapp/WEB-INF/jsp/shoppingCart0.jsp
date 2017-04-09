@@ -1,5 +1,4 @@
-<%@ page import="java.util.List" %>
-<%@ page import="javafx.util.Pair" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: zcoaolas
   Date: 3/18/2017

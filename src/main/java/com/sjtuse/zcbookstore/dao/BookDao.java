@@ -12,6 +12,16 @@ import java.util.List;
 @Repository
 public interface BookDao {
 
+    /**
+     * Query a single book
+     * @param bookId an Integer
+     * @return the book of this Id, null if not exists
+     */
     Book getByBookId (@Param("bookId") Integer bookId);
+
+    /**
+     * List all books in the database
+     * @return a book list
+     */
     List<Book> getAllBooks();
 }

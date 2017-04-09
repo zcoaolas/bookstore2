@@ -5,9 +5,49 @@
 
 <mapper namespace="com.sjtuse.zcbookstore.dao.OrderDao">
 
-    <insert id="placeOrder" parameterType="com.sjtuse.zcbookstore.entity.Order">
-        INSERT INTO `order`(userId, "time", price)
-        VALUES (#{userId}, #{time}, #{price})
+    <insert id="placeOrder" useGeneratedKeys="true" keyProperty="orderId" parameterType="com.sjtuse.zcbookstore.entity.Order">
+        INSERT INTO `order`(userId, price, time)
+        VALUES (#{userId}, #{price}, #{time})
     </insert>
+    
+
+    <resultMap id="orderDetailResultMap" type="com.sjtuse.zcbookstore.entity.OrderDetail">
+        <id column="orderId" property="orderId"/>
+        <id column="bookId" property="bookId"/>
+        <result column="number" property="number"/>
+    </resultMap>
+    <insert id="addOrderDetails" parameterType="java.util.List">
+        INSERT INTO orderdetail (orderId, bookId, number)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.orderId}, #{item.bookId}, #{item.number})
+        </foreach>
+    </insert>
+    
+
+    <resultMap id="OrderResultMap" type="com.sjtuse.zcbookstore.entity.Order">
+        <id column="orderId" property="orderId"/>
+
+        <result column="userId" property="userId"/>
+        <result column="price" property="price"/>
+        <result column="time" property="time"/>
+
+        <collection property="orderDetails" ofType="com.sjtuse.zcbookstore.entity.OrderDetail">
+            <result column="orderId" property="orderId"/>
+            <result column="bookId" property="bookId"/>
+            <result column="number" property="number"/>
+        </collection>
+    </resultMap>
+    <select id="getOrdersByUser" resultMap="OrderResultMap">
+        SELECT
+            *
+        FROM
+            `order` JOIN orderdetail on `order`.orderId=orderdetail.orderId
+        WHERE
+            `order`.userId=#{userId}
+    </select>
+
+
+    
 
 </mapper>

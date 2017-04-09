@@ -2,6 +2,7 @@ package com.sjtuse.zcbookstore.service;
 
 import com.sjtuse.zcbookstore.entity.Book;
 
+import java.math.BigDecimal;
 import java.util.Map;
 
 /**
@@ -25,4 +26,6 @@ public interface CartService {
      * Clear the shopping cart of a user
      */
     void clearCart();
+
+    BigDecimal getTotalPrice();
 }

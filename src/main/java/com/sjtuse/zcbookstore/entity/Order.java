@@ -5,18 +5,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.util.HashMap;
+import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * Created by zcoaolas on 2017/4/1.
  */
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Order {
     private Integer orderId;
     private Integer userId;
     private BigDecimal price;
-    private Date time;
-    private HashMap<Book, Integer> order;
+    private Timestamp time;
+    private List<OrderDetail> orderDetails;
 }

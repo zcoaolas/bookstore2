@@ -10,6 +10,7 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Map;
 
 /**
@@ -36,6 +37,10 @@ public class CartServiceImpl implements CartService, Serializable {
 
     public void clearCart(){
         cart.clearCart();
+    }
+
+    public BigDecimal getTotalPrice(){
+        return cart.getTotalPrice();
     }
 
 }

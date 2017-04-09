@@ -113,7 +113,7 @@
 
                     <div class="panel-footer">
                         <div class="row">
-                        <form id="placeOrderForm" action="${ctx }/cart/pay" method="POST">
+                        <form id="placeOrderForm" action="${ctx }/cart/submit" method="POST">
                             <p style="padding-left: 50px; color: red">
                                 Total:   $ ${total.toString()}
                             </p>

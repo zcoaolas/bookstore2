@@ -1,6 +1,7 @@
 package com.sjtuse.zcbookstore.dao;
 
 import com.sjtuse.zcbookstore.entity.Order;
+import com.sjtuse.zcbookstore.entity.OrderDetail;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Repository;
 
@@ -13,9 +14,15 @@ import java.util.List;
 @Repository
 public interface OrderDao {
     /**
+     * The auto-generated userId will be set into this order object by MyBatis
      * @param order a submitted cart
      */
     void placeOrder(Order order);
+    /**
+     * Should always be done right after the placeOrder function!!!
+     * @param orderDetails an orderDetail list
+     */
+    void addOrderDetails(List<OrderDetail> orderDetails);
 
     /**
      * @param userId the user id
