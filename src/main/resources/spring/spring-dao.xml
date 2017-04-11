@@ -48,4 +48,6 @@
         <!-- 给出需要扫描Dao接口包 -->
         <property name="basePackage" value="com.sjtuse.zcbookstore.dao" />
     </bean>
+
+    <context:component-scan base-package="com.sjtuse.zcbookstore.dao" />
 </beans>

@@ -34,22 +34,19 @@ public class CartController {
         Map<Book, Integer> c = cartService.getCart();
         List<Pair<Book, Integer>> lst = new LinkedList<>();
         Pair<Book, Integer> p;
-        //BigDecimal totalC = new BigDecimal(0);
         for (Map.Entry<Book, Integer> e : c.entrySet()){
-            p = new Pair<Book, Integer>(e.getKey(), e.getValue());
-            //totalC = totalC.add(e.getKey().getBookPrice().multiply(BigDecimal.valueOf(e.getValue())));
+            p = new Pair<>(e.getKey(), e.getValue());
             lst.add(p);
         }
         map.put("cart", lst);
-        //map.put("total", totalC.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
         map.put("total", cartService.getTotalPrice().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
         return "shoppingCart";
     }
 
-    @RequestMapping(value = "/pay")
+    /*@RequestMapping(value = "/pay")
     public String cartPay(){
         return "shoppingOrder";
-    }
+    }*/
 
     @RequestMapping(value = "/submit")
     public String submit(HttpSession session) {
@@ -60,6 +57,7 @@ public class CartController {
         }
         orderService.placeOrder(new Order(0, (Integer)session.getAttribute("userId"),
                 cartService.getTotalPrice(), new Timestamp(System.currentTimeMillis()), orderDetails));
+        cartService.clearCart();
         return "redirect:/order/showOrder";
     }
 }
