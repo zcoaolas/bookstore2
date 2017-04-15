@@ -210,6 +210,27 @@
       <version>1.16.6</version>
     </dependency>
 
+    <!-- Support Web Socket-->
+    <dependency>
+      <groupId>javax.websocket</groupId>
+      <artifactId>javax.websocket-api</artifactId>
+      <version>1.1</version>
+      <scope>provided</scope> <!-- 注意,scope必须为provided,否则runtime会冲突，如果使用tomcat 8,还需要将TOMCAT_HOME/lib下的javax.websocket-api.jar一并删除 -->
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-websocket</artifactId>
+      <version>4.2.2.RELEASE</version>
+    </dependency>
+
+    <!-- json -->
+    <dependency>
+      <groupId>net.sf.json-lib</groupId>
+      <artifactId>json-lib</artifactId>
+      <version>2.4</version>
+      <classifier>jdk15</classifier>
+    </dependency>
+
   </dependencies>
   <build>
     <finalName>bookstore2</finalName>

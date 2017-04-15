@@ -39,52 +39,6 @@ public class UserController {
     public String userLogin(@RequestParam("username") String username, @RequestParam("password") String password,
                             HttpSession session, Model model) {
 
-        /*User u = userService.getByUsername(username);
-        if (u == null){
-            //map.put("msg", "no_user");
-            return "userLogin";
-        }
-        else if (u.getPassword().equals(password)){
-            session.setAttribute("username", u.getUsername());
-            session.setAttribute("userId", u.getUserId());
-            session.setAttribute("email", u.getEmail());
-            session.setAttribute("auth", u.getAuth());
-            //map.put("msg", "ok");
-        }
-        else{
-            //map.put("msg", "wrong_pwd");
-            return "userLogin";
-        }*/
-        /*LoginContext loginContext = null;
-        try{
-            loginContext = new LoginContext("SimpleLogin",
-                    new SimpleCallbackHandler(username, password.toCharArray()));
-        }
-        catch (LoginException le){
-            System.err.println("LoginContext cannot be created. " + le.getMessage());
-            return "userLogin";
-        }
-        catch (SecurityException se){
-            System.err.println("LoginContext cannot be created. " + se.getMessage());
-            return "userLogin";
-        }
-        try{
-            loginContext.login();
-        }
-        catch (LoginException le){
-            System.err.println("Authentication failed. " + le.getMessage());
-            return "userLogin";
-        }
-        catch (NullPointerException npe){
-            System.err.println(npe.getMessage());
-            return "userLogin";
-        }
-        User u = userService.getByUsername(username);
-        session.setAttribute("username", u.getUsername());
-        session.setAttribute("userId", u.getUserId());
-        session.setAttribute("email", u.getEmail());
-        session.setAttribute("auth", u.getAuth());*/
-
         Subject userSubject = SecurityUtils.getSubject();
         if(!userSubject.isAuthenticated()){
             UsernamePasswordToken upToken = new UsernamePasswordToken(username, password);
@@ -109,7 +63,6 @@ public class UserController {
         }
         userLogout(session);
         return "redirect:/user/userLogin";
-        //return "redirect:/book/bookList";// WEB-INF/jsp/"login".jsp
     }
 
     @RequestMapping(value = "/userLogin", method = RequestMethod.GET)
@@ -130,7 +83,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/userRefused")
-    public String userRefused(HttpSession session){
+    public String userRefused(){
         return "refused";
     }
 

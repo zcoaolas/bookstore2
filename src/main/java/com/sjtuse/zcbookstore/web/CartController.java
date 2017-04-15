@@ -43,10 +43,10 @@ public class CartController {
         return "shoppingCart";
     }
 
-    /*@RequestMapping(value = "/pay")
+    @RequestMapping(value = "/pay")
     public String cartPay(){
         return "shoppingOrder";
-    }*/
+    }
 
     @RequestMapping(value = "/submit")
     public String submit(HttpSession session) {

@@ -3,15 +3,15 @@ package com.sjtuse.zcbookstore.web;
 import com.sjtuse.zcbookstore.entity.Book;
 import com.sjtuse.zcbookstore.service.BookService;
 import com.sjtuse.zcbookstore.service.CartService;
+import net.sf.json.JSONObject;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import org.apache.shiro.subject.Subject;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -77,12 +77,28 @@ public class BookController {
 
     @RequestMapping(value = "/bookDetail", method = RequestMethod.GET)
     public String bookDetail(@RequestParam(value = "id") Integer bookId,
-                             Map<String, Object> map){
+                             Map<String, Object> map, HttpSession session){
         List<Book> lb = new LinkedList<Book>();
-        lb.add(bookService.getBook(bookId));
+        Book b = bookService.getBook(bookId);
+        lb.add(b);
         map.put("book", lb);
+        map.put("bookId", b.getBookId());
+        //session.setAttribute("bookId", b.getBookId());
         return "bookDetail";
     }
 
+    @RequestMapping(value="/bookDetail/{bookId}", method = RequestMethod.GET, produces="application/json; charset=utf-8")
+    @ResponseBody
+    public JSONObject bookInfo(@PathVariable("bookId") Integer bookId) {
+        JSONObject json = new JSONObject();
+        Book book = bookService.getBook(bookId);
+        json.put("bookId", book.getBookId());
+        json.put("bookName", book.getBookName());
+        json.put("bookInfo", book.getBookInfo());
+        json.put("bookAuthor", book.getBookAuthor());
+        json.put("bookCategory", book.getCategory());
+        json.put("bookPrice", book.getBookPrice());
+        return json;
+    }
 
 }

@@ -1,10 +1,5 @@
 package com.sjtuse.zcbookstore.entity;
 
-import com.sjtuse.zcbookstore.entity.Book;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
-import javax.ejb.Stateful;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;

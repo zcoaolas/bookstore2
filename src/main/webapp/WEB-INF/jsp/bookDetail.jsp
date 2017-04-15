@@ -33,7 +33,30 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
 
 </head>
-<body>
+
+<script type="text/javascript">
+    function getBook(bId) {
+
+        var successProcess = function(data){
+            document.getElementById("bName").innerHTML =data.bookName;
+            document.getElementById("bInfo").innerHTML =data.bookInfo;
+            document.getElementById("bAuthor").innerHTML =data.bookAuthor;
+            document.getElementById("bCategory").innerHTML =data.bookCategory;
+            document.getElementById("bPrice").innerHTML ='$ '+ data.bookPrice;
+        };
+
+        $.ajax({
+            type: 'GET',
+            contentType : 'application/json;charset=utf-8',
+            url: '/book/bookDetail/' + bId,
+            success: successProcess,
+            cache:false
+        });
+
+    }
+</script>
+
+<body onload =getBook(${bookId})>
 
 <section class="menu-section">
     <div class="container">
@@ -89,39 +112,37 @@
                     </div>--%>
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <c:forEach var="i" items="${book}">
-                            <c:set value="${i.bookId}" var="bId" />
+
                             <table class="table table-bordered" id="dataTables-example">
                                 <tbody>
                                 <tr>
                                     <td rowspan="5"><img src="${ctx}/assets/img/cover.png"></td>
-                                    <td colspan="2">${i.bookName}</td>
+                                    <td colspan="2" id="bName"></td>
                                 </tr>
                                 <tr>
                                     <td>Information</td>
-                                    <td>${i.bookInfo}</td>
+                                    <td id="bInfo"></td>
                                 </tr>
                                 <tr>
                                     <td>Author</td>
-                                    <td>${i.bookAuthor}</td>
+                                    <td id="bAuthor"></td>
                                 </tr>
                                 <tr>
                                     <td>Category</td>
-                                    <td>${i.category}</td>
+                                    <td id="bCategory"></td>
                                 </tr>
                                 <tr>
                                     <td>Price</td>
-                                    <td>$ ${i.bookPrice}</td>
+                                    <td id="bPrice"></td>
                                 </tr>
 
                                 </tbody>
 
                             </table>
 
-                        </c:forEach>
                         <form id="orderBookForm" action="${ctx}/book/bookAddCart" method="POST">
                             <div class="input-group" style="width: 20%; float:right">
-                            <input type="hidden" id="id" name="id" value="${bId}">
+                            <input type="hidden" id="id" name="id" value="${bookId}">
                             <input type="number" class="form-control" min="1" max="10" id="amount" value="1"
                                    name="amount">
                             <span class="form-group input-group-btn">
