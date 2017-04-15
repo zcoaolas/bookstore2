@@ -7,6 +7,11 @@
   <version>1.0-SNAPSHOT</version>
   <name>bookstore2 Maven Webapp</name>
   <url>http://maven.apache.org</url>
+
+  <properties>
+    <spring.version>4.2.2.RELEASE</spring.version>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -29,11 +34,11 @@
 
     <!-- 1.日志 -->
     <!-- 实现slf4j接口并整合 -->
-    <dependency>
+    <!--<dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
       <version>1.1.1</version>
-    </dependency>
+    </dependency>-->
 
     <!-- 2.数据库 -->
     <dependency>
@@ -87,61 +92,61 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
-      <version>4.2.2.RELEASE</version>
+      <version>${spring.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-beans</artifactId>
-      <version>4.2.2.RELEASE</version>
+      <version>${spring.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
-      <version>4.2.2.RELEASE</version>
+      <version>${spring.version}</version>
     </dependency>
     <!-- 2)Spring DAO层 -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-tx</artifactId>
-      <version>4.2.2.RELEASE</version>
+      <version>${spring.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-jdbc</artifactId>
-      <version>4.2.2.RELEASE</version>
+      <version>${spring.version}</version>
     </dependency>
     <!-- 3)Spring web -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
-      <version>4.2.2.RELEASE</version>
+      <version>${spring.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
-      <version>4.2.2.RELEASE</version>
+      <version>${spring.version}</version>
     </dependency>
     <!-- 4)Spring daoTest -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
-      <version>4.2.2.RELEASE</version>
+      <version>${spring.version}</version>
     </dependency>
     <!-- 其他-->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-aspects</artifactId>
-      <version>4.2.2.RELEASE</version>
+      <version>${spring.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context-support</artifactId>
-      <version>4.2.2.RELEASE</version>
+      <version>${spring.version}</version>
     </dependency>
 
     <!-- redis客户端:Jedis -->
@@ -169,7 +174,7 @@
     </dependency>
 
     <!-- Glassfish -->
-    <dependency>
+<!--    <dependency>
       <groupId>org.glassfish.main.distributions</groupId>
       <artifactId>glassfish</artifactId>
       <version>4.1.1</version>
@@ -179,7 +184,7 @@
       <groupId>javax</groupId>
       <artifactId>javaee-api</artifactId>
       <version>7.0</version>
-    </dependency>
+    </dependency>-->
 
     <!--  Shiro  -->
     <dependency>
@@ -220,7 +225,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-websocket</artifactId>
-      <version>4.2.2.RELEASE</version>
+      <version>${spring.version}</version>
     </dependency>
 
     <!-- json -->
@@ -229,6 +234,18 @@
       <artifactId>json-lib</artifactId>
       <version>2.4</version>
       <classifier>jdk15</classifier>
+    </dependency>
+
+    <!-- JMS -->
+    <dependency>
+      <groupId>org.apache.activemq</groupId>
+      <artifactId>activemq-all</artifactId>
+      <version>5.9.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jms</artifactId>
+      <version>${spring.version}</version>
     </dependency>
 
   </dependencies>

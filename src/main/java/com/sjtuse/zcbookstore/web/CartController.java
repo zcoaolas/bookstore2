@@ -4,12 +4,19 @@ import com.sjtuse.zcbookstore.entity.Book;
 import com.sjtuse.zcbookstore.entity.Order;
 import com.sjtuse.zcbookstore.entity.OrderDetail;
 import com.sjtuse.zcbookstore.service.CartService;
+import com.sjtuse.zcbookstore.service.JMSService;
 import com.sjtuse.zcbookstore.service.OrderService;
 import javafx.util.Pair;
+import org.apache.activemq.command.ActiveMQQueue;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.annotation.Resource;
+import javax.jms.Destination;
+import javax.jms.JMSProducer;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -48,7 +55,10 @@ public class CartController {
         return "shoppingOrder";
     }
 
-    @RequestMapping(value = "/submit")
+    /**
+     * Place an order by calling the orderService (traditional way)
+     */
+    /*@RequestMapping(value = "/submit")
     public String submit(HttpSession session) {
         Map<Book, Integer> c = cartService.getCart();
         List<OrderDetail> orderDetails = new LinkedList<>();
@@ -59,5 +69,32 @@ public class CartController {
                 cartService.getTotalPrice(), new Timestamp(System.currentTimeMillis()), orderDetails));
         cartService.clearCart();
         return "redirect:/order/showOrder";
+    }*/
+
+    /**
+     * Place an order using JMS (ActiveMQ)
+     */
+    @Autowired
+    private JMSService producerService;
+    @Autowired
+    @Qualifier("queueDestination")
+    private Destination destination;
+
+    @RequestMapping(value = "/submit")
+    public String sendOrderMessage(HttpSession session){
+        //String message = "CZCZCZCZCZCZCZCZ";
+        //producerService.sendMessage(destination, message);
+
+        Map<Book, Integer> c = cartService.getCart();
+        List<OrderDetail> orderDetails = new LinkedList<>();
+        for (Map.Entry<Book, Integer> e : c.entrySet()){
+            orderDetails.add(new OrderDetail(0, e.getKey().getBookId(), e.getValue()));
+        }
+        Order o = new Order(0, (Integer)session.getAttribute("userId"),
+                cartService.getTotalPrice(), new Timestamp(System.currentTimeMillis()), orderDetails);
+        producerService.sendOrderMessage(destination, o);
+        cartService.clearCart();
+        return "redirect:/order/showOrder";
     }
+
 }
