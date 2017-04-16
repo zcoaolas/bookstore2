@@ -9,7 +9,9 @@
   <url>http://maven.apache.org</url>
 
   <properties>
-    <spring.version>4.2.2.RELEASE</spring.version>
+    <spring.version>4.3.7.RELEASE</spring.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
   <dependencies>
@@ -34,6 +36,7 @@
 
     <!-- 1.日志 -->
     <!-- 实现slf4j接口并整合 -->
+    <!-- !!!!!!!!!与activemq-all自带的slf4j冲突，注释掉!!!!!!!!!-->
     <!--<dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
@@ -149,23 +152,6 @@
       <version>${spring.version}</version>
     </dependency>
 
-    <!-- redis客户端:Jedis -->
-    <dependency>
-      <groupId>redis.clients</groupId>
-      <artifactId>jedis</artifactId>
-      <version>2.7.3</version>
-    </dependency>
-    <dependency>
-      <groupId>com.dyuproject.protostuff</groupId>
-      <artifactId>protostuff-core</artifactId>
-      <version>1.0.8</version>
-    </dependency>
-    <dependency>
-      <groupId>com.dyuproject.protostuff</groupId>
-      <artifactId>protostuff-runtime</artifactId>
-      <version>1.0.8</version>
-    </dependency>
-
     <!-- Map工具类 -->
     <dependency>
       <groupId>commons-collections</groupId>
@@ -246,6 +232,35 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-jms</artifactId>
       <version>${spring.version}</version>
+    </dependency>
+
+    <!-- WebSocket Chat Room -->
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.3.1</version>
+    </dependency>
+
+    <!-- redis客户端:Jedis -->
+    <dependency>
+      <groupId>redis.clients</groupId>
+      <artifactId>jedis</artifactId>
+      <version>2.4.2</version>
+    </dependency>
+<!--    <dependency>
+      <groupId>com.dyuproject.protostuff</groupId>
+      <artifactId>protostuff-core</artifactId>
+      <version>1.0.8</version>
+    </dependency>
+    <dependency>
+      <groupId>com.dyuproject.protostuff</groupId>
+      <artifactId>protostuff-runtime</artifactId>
+      <version>1.0.8</version>
+    </dependency>-->
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-redis</artifactId>
+      <version>1.6.0.RELEASE</version>
     </dependency>
 
   </dependencies>

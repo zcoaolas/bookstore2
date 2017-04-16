@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
@@ -11,7 +12,7 @@ import java.math.BigDecimal;
  */
 @Data
 @NoArgsConstructor
-public class Book {
+public class Book implements Serializable{
     private Integer bookId;
     private String bookName;
     private BigDecimal bookPrice;

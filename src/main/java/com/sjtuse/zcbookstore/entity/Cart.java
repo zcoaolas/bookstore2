@@ -1,5 +1,6 @@
 package com.sjtuse.zcbookstore.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,7 +8,7 @@ import java.util.Map;
 /**
  * Created by zcoaolas on 3/18/2017.
  */
-public class Cart {
+public class Cart implements Serializable{
     private HashMap<Book, Integer> cart;
     private BigDecimal totalPrice;
 

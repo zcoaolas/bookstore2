@@ -79,7 +79,7 @@ public class UserController {
         catch (Exception e){
             logger.info(e.getMessage());
         }
-        return "index";
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/userRefused")

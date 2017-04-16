@@ -32,6 +32,7 @@
 
     <!-- 4.扫描web相关的bean -->
     <context:component-scan base-package="com.sjtuse.zcbookstore.web" />
+    <context:component-scan base-package="com.sjtuse.zcbookstore.chat" />
 
     <!-- Shiro -->
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">

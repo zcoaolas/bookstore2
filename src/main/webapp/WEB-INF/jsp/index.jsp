@@ -15,7 +15,7 @@
 
 <button onclick="window.location.href='${ctx }/user/userRegister'">Register</button>
 
-<button onclick="window.location.href='${ctx }/chatRoom'">Chat Room</button>
+<button onclick="window.location.href='${ctx }/chat'">Chat Room</button>
 </body>
 </html>
 

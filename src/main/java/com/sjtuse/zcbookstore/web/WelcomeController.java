@@ -15,8 +15,8 @@ public class WelcomeController {
         return "index";
     }
 
-    @RequestMapping(value = "/chatRoom")
+    @RequestMapping(value = "/chat")
     public String chatRoom() {
-        return "chatRoom";
+        return "websocket";
     }
 }
