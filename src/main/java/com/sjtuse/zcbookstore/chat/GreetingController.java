@@ -36,7 +36,9 @@ public class GreetingController {
         /*System.out.println("connected successfully....");
         System.out.println(topic);
         System.out.println(headers);*/
-        return new Greeting(message.getName() + " joined chat room!");
+        String n = message.getName();
+        String m = message.getMsg();
+        return new Greeting(n + ": " + m);
     }
 
     /**
