@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import javax.jms.Destination;
-import javax.jms.JMSProducer;
+//import javax.jms.JMSProducer;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
