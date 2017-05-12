@@ -27,12 +27,14 @@ public class UserServiceImpl implements UserService {
     @Override
     @Cacheable(value = "User")
     public User getByUsername(String username){
+        logger.info("getUsername: "+username);
         return userDao.getByUsername(username);
     }
 
     @Override
     @Cacheable(value = "User", key = "'getAllUsers'")
     public List<User> getAllUsers(){
+        logger.info("getAllUsers");
         return userDao.getAllUsers();
     }
 }
