@@ -43,7 +43,6 @@
       <param-value>classpath:spring/spring-*.xml</param-value>
     </init-param>
   </servlet>
-
   <servlet-mapping>
     <servlet-name>seckill-dispatcher</servlet-name>
     <url-pattern>/</url-pattern>
@@ -59,17 +58,37 @@
     <param-value>60000</param-value>
   </context-param>
 
-  <!--  <welcome-file-list>
-      <welcome-file>/WEB-INF/jsp/index.jsp</welcome-file>
-    </welcome-file-list>-->
 
-  <!--<security-constraint>
-  <web-resource-collection >
-    <web-resource-name >SSL</web-resource-name>
-    <url-pattern>/cart/pay</url-pattern>
-  </web-resource-collection>
-  <user-data-constraint>
-    <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-  </user-data-constraint>
-  </security-constraint>-->
+  <!-- Web Service (SOAP)-->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:spring/spring-*.xml</param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+  <servlet>
+    <servlet-name>webservices</servlet-name>
+    <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>transformWsdlLocations</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:spring/spring-*.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>webservices</servlet-name>
+    <url-pattern>*.wsdl</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>webservices</servlet-name>
+    <url-pattern>/endpoints/*</url-pattern>
+  </servlet-mapping>
 </web-app>
