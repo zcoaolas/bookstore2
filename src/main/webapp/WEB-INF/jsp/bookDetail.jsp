@@ -54,6 +54,27 @@
         });
 
     }
+
+    function getBookRest(bId) {
+        $.ajax({
+            type: "GET",
+            url: "/rest/book/"+bId,
+            contentType: "application/json;charset=utf-8",
+
+            success: function(data) {
+                var ss = JSON.stringify(data);
+                var jsonObj = eval( '(' + ss + ')' );
+
+                console.log(jsonObj);
+                alert( "bookAuthor: " + jsonObj.bookAuthor +
+                    "\n\nbookId: " + jsonObj.bookId +
+                    "\n\nbookInfo: " + jsonObj.bookInfo +
+                    "\n\nbookName: " + jsonObj.bookName +
+                    "\n\nbookPrice: " + jsonObj.bookPrice +
+                    "\n\ncategory: " + jsonObj.category);
+            }
+        });
+    }
 </script>
 
 <body onload =getBook(${bookId})>
@@ -158,7 +179,11 @@
         </div>
     </div>
     <!-- /. ROW  -->
-</div>
+    <div>
+        <!-- Section to demonstrate Restful web service -->
+        <button class="btn btn-info" type="submit" id="restbtn" onclick="getBookRest(${bookId})">Rest API</button>
+        <!-- Section to demonstrate Restful web service -->
+    </div>
 </div>
 <!-- CONTENT-WRAPPER SECTION END-->
 
